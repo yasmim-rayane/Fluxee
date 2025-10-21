@@ -25,28 +25,8 @@ class SistemaWA:
         # Instanciar gerenciador de dados
         self.data_manager = DataManager()
         
-        # Criar dados de exemplo
-        self._criar_dados_exemplo()
-        
         # Configurar interface
         self._criar_interface()
-        
-    def _criar_dados_exemplo(self):
-        """Cria alguns dados de exemplo para teste"""
-        # Categorias
-        cat1 = self.data_manager.criar_categoria("Eletrônicos")
-        cat2 = self.data_manager.criar_categoria("Alimentos")
-        cat3 = self.data_manager.criar_categoria("Vestuário")
-        
-        # Produtos
-        self.data_manager.criar_produto("Notebook Dell", cat1, 3500.00, 10)
-        self.data_manager.criar_produto("Mouse Logitech", cat1, 89.90, 50)
-        self.data_manager.criar_produto("Arroz 5kg", cat2, 25.90, 100)
-        self.data_manager.criar_produto("Camiseta Polo", cat3, 79.90, 30)
-        
-        # Clientes
-        self.data_manager.criar_cliente("João Silva", "15/03/1990", "123.456.789-00", "Masculino")
-        self.data_manager.criar_cliente("Maria Santos", "22/07/1985", "987.654.321-00", "Feminino")
         
     def _criar_interface(self):
         """Cria a interface principal"""
@@ -84,11 +64,12 @@ class SistemaWA:
         # Botões do menu
         menu_buttons = [
             ("🏠 Dashboard", self.mostrar_dashboard),
-            ("📦 Produtos", self.mostrar_produtos),
             ("📂 Categorias", self.mostrar_categorias),
+            ("📦 Produtos", self.mostrar_produtos),
+            ("📥 Entrada Estoque", self.mostrar_entrada_estoque),
             ("👥 Clientes", self.mostrar_clientes),
             ("💰 Vendas", self.mostrar_vendas),
-            ("📥 Entrada Estoque", self.mostrar_entrada_estoque),
+            ("🚪 Sair", self.root.quit)
         ]
         
         for text, command in menu_buttons:
@@ -150,11 +131,11 @@ class SistemaWA:
         stats_frame.pack(pady=20, padx=20, fill=tk.BOTH, expand=True)
         
         # Calcular estatísticas
-        total_produtos = len(self.data_manager.produtos)
-        total_categorias = len(self.data_manager.categorias)
-        total_clientes = len(self.data_manager.clientes)
-        total_vendas = len(self.data_manager.vendas)
-        valor_total_vendas = sum(v['valor_total'] for v in self.data_manager.vendas.values())
+        total_produtos = len(self.data_manager.listar_produtos())
+        total_categorias = len(self.data_manager.listar_categorias())
+        total_clientes = len(self.data_manager.listar_clientes())
+        total_vendas = len(self.data_manager.listar_vendas())
+        valor_total_vendas = sum(v['valor_total'] for v in self.data_manager.listar_vendas())
         
         # Cards de estatísticas
         stats = [
