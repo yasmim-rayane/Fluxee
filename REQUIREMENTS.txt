@@ -1,0 +1,55 @@
+# Requisitos do Sistema WA
+
+## Requisitos de Sistema
+
+- Python 3.7 ou superior
+- Sistema Operacional: Windows, Linux ou macOS
+- Resolução de tela recomendada: 1200x700 ou superior
+
+## Bibliotecas Python
+
+### Bibliotecas Padrão (já incluídas no Python)
+- tkinter (Interface gráfica)
+- datetime (Manipulação de datas)
+- typing (Type hints)
+
+## Instalação
+
+1. Certifique-se de ter Python instalado:
+   ```bash
+   python --version
+   ```
+
+2. Clone ou baixe os arquivos do projeto
+
+3. Execute o aplicativo:
+   ```bash
+   python main.py
+   ```
+
+## Estrutura de Arquivos Necessários
+
+Todos os seguintes arquivos devem estar no mesmo diretório:
+
+- main.py
+- data_manager.py
+- categorias_ui.py
+- produtos_ui.py
+- clientes_ui.py
+- vendas_ui.py
+- entrada_estoque_ui.py
+
+## Notas sobre Tkinter
+
+O Tkinter geralmente vem pré-instalado com Python. Se não estiver disponível:
+
+### Windows
+Tkinter vem incluído na instalação padrão do Python
+
+### Linux (Ubuntu/Debian)
+```bash
+sudo apt-get install python3-tk
+```
+
+### macOS
+Tkinter vem incluído com Python do python.org ou Homebrew
