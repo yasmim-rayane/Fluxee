@@ -7,12 +7,12 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 from PIL import Image, ImageTk
 import os
-from data_manager import DataManager
-from categorias_ui import CategoriasFrame
-from produtos_ui import ProdutosFrame
-from clientes_ui import ClientesFrame
-from vendas_ui import VendasFrame
-from entrada_estoque_ui import EntradaEstoqueFrame
+from database.data_manager import DataManager
+from ui.categorias_ui import CategoriasFrame
+from ui.produtos_ui import ProdutosFrame
+from ui.clientes_ui import ClientesFrame
+from ui.vendas_ui import VendasFrame
+from ui.entrada_estoque_ui import EntradaEstoqueFrame
 
 
 class SistemaWA:

@@ -4,7 +4,7 @@ Mantém compatibilidade com a interface antiga
 """
 
 from typing import Dict, List, Optional
-from database import Database
+from database.database import Database
 
 
 class DataManager:
