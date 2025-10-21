@@ -1,0 +1,4 @@
+[2025-10-21 16:30:45] NOVO PRODUTO | Produto: Notebook Dell | Quantidade: 10 | Total: R$ 35000.00 | Estoque Restante: 10
+[2025-10-21 16:30:45] NOVO PRODUTO | Produto: Mouse Logitech | Quantidade: 50 | Total: R$ 4495.00 | Estoque Restante: 50
+[2025-10-21 16:30:45] NOVO PRODUTO | Produto: Arroz 5kg | Quantidade: 100 | Total: R$ 2590.00 | Estoque Restante: 100
+[2025-10-21 16:30:45] NOVO PRODUTO | Produto: Camiseta Polo | Quantidade: 30 | Total: R$ 2397.00 | Estoque Restante: 30

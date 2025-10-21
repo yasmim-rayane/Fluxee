@@ -46,6 +46,7 @@
 - `VALIDACAO_CPF.md`
 - `README_SQLITE.md`
 - `CONVERSAO_COMPLETA.md`
+- `SISTEMA_LOGS.md` ⭐
 - `REQUIREMENTS.txt`
 
 ### 🟣 Organização
@@ -92,6 +93,7 @@
 **Organização de pastas?** → ESTRUTURA.md  
 **Paleta de cores?** → MODERNIZACAO_VISUAL.md  
 **Status do projeto?** → PROJETO_CONCLUIDO.md  
+**Sistema de logs?** → SISTEMA_LOGS.md  
 
 ---
 
