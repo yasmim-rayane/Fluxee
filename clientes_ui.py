@@ -10,10 +10,11 @@ from datetime import datetime
 class ClientesFrame:
     """Frame para gerenciar clientes"""
     
-    def __init__(self, parent, data_manager):
+    def __init__(self, parent, data_manager, colors):
         self.parent = parent
         self.data_manager = data_manager
-        self.frame = tk.Frame(parent, bg="white")
+        self.colors = colors
+        self.frame = tk.Frame(parent, bg=colors['white'])
         self.frame.pack(fill=tk.BOTH, expand=True)
         
         self._criar_interface()
@@ -24,48 +25,60 @@ class ClientesFrame:
         # Título
         title = tk.Label(
             self.frame,
+            text="👥 Clientes",
+            font=("Segoe UI", 24, "bold"),
+            bg=self.colors['white'],
+            fg=self.colors['text_dark']
+        )
+        title.pack(pady=(0, 25), anchor="w", padx=20)
+        
+    def _criar_interface(self):
+        """Cria a interface de clientes"""
+        # Título
+        title = tk.Label(
+            self.frame,
             text="Gerenciamento de Clientes",
-            font=("Arial", 18, "bold"),
-            bg="white",
-            fg="#2c3e50"
+            font=("Segoe UI", 18, "bold"),
+            bg=self.colors["white"],
+            fg=self.colors["text_dark"]
         )
         title.pack(pady=20)
         
         # Frame para formulário
-        form_frame = tk.Frame(self.frame, bg="white")
+        form_frame = tk.Frame(self.frame, bg=self.colors["white"])
         form_frame.pack(pady=10, padx=20, fill=tk.X)
         
         # Nome Completo
         tk.Label(
             form_frame,
             text="Nome Completo:",
-            font=("Arial", 11),
-            bg="white"
+            font=("Segoe UI", 11),
+            bg=self.colors["white"]
         ).grid(row=0, column=0, sticky="w", pady=5, padx=5)
         
-        self.entry_nome = tk.Entry(form_frame, font=("Arial", 11), width=40)
+        self.entry_nome = tk.Entry(form_frame, font=("Segoe UI", 11), width=40)
         self.entry_nome.grid(row=0, column=1, pady=5, padx=5, columnspan=2)
         
         # CPF
         tk.Label(
             form_frame,
             text="CPF:",
-            font=("Arial", 11),
-            bg="white"
+            font=("Segoe UI", 11),
+            bg=self.colors["white"]
         ).grid(row=0, column=3, sticky="w", pady=5, padx=5)
         
-        self.entry_cpf = tk.Entry(form_frame, font=("Arial", 11), width=20)
+        self.entry_cpf = tk.Entry(form_frame, font=("Segoe UI", 11), width=20)
         self.entry_cpf.grid(row=0, column=4, pady=5, padx=5)
         
         # Data de Nascimento
         tk.Label(
             form_frame,
             text="Data Nascimento:",
-            font=("Arial", 11),
-            bg="white"
+            font=("Segoe UI", 11),
+            bg=self.colors["white"]
         ).grid(row=1, column=0, sticky="w", pady=5, padx=5)
         
-        self.entry_data_nasc = tk.Entry(form_frame, font=("Arial", 11), width=20)
+        self.entry_data_nasc = tk.Entry(form_frame, font=("Segoe UI", 11), width=20)
         self.entry_data_nasc.grid(row=1, column=1, pady=5, padx=5)
         self.entry_data_nasc.insert(0, "DD/MM/AAAA")
         self.entry_data_nasc.bind("<FocusIn>", self._on_entry_click)
@@ -75,13 +88,13 @@ class ClientesFrame:
         tk.Label(
             form_frame,
             text="Gênero:",
-            font=("Arial", 11),
-            bg="white"
+            font=("Segoe UI", 11),
+            bg=self.colors["white"]
         ).grid(row=1, column=2, sticky="w", pady=5, padx=5)
         
         self.combo_genero = ttk.Combobox(
             form_frame,
-            font=("Arial", 11),
+            font=("Segoe UI", 11),
             width=18,
             state="readonly",
             values=["Masculino", "Feminino", "Outro", "Prefiro não informar"]
@@ -89,16 +102,16 @@ class ClientesFrame:
         self.combo_genero.grid(row=1, column=3, pady=5, padx=5)
         
         # Botões de ação
-        btn_frame = tk.Frame(self.frame, bg="white")
+        btn_frame = tk.Frame(self.frame, bg=self.colors["white"])
         btn_frame.pack(pady=15)
         
         self.btn_adicionar = tk.Button(
             btn_frame,
             text="➕ Adicionar Cliente",
             command=self._adicionar_cliente,
-            font=("Arial", 11, "bold"),
-            bg="#27ae60",
-            fg="white",
+            font=("Segoe UI", 11, "bold"),
+            bg=self.colors["success"],
+            fg=self.colors["white"],
             cursor="hand2",
             padx=20,
             pady=8
@@ -109,9 +122,9 @@ class ClientesFrame:
             btn_frame,
             text="✏️ Salvar Edição",
             command=self._editar_cliente,
-            font=("Arial", 11, "bold"),
-            bg="#f39c12",
-            fg="white",
+            font=("Segoe UI", 11, "bold"),
+            bg=self.colors["warning"],
+            fg=self.colors["white"],
             cursor="hand2",
             padx=20,
             pady=8,
@@ -123,9 +136,9 @@ class ClientesFrame:
             btn_frame,
             text="❌ Cancelar",
             command=self._cancelar,
-            font=("Arial", 11, "bold"),
-            bg="#95a5a6",
-            fg="white",
+            font=("Segoe UI", 11, "bold"),
+            bg="#6B7280",
+            fg=self.colors["white"],
             cursor="hand2",
             padx=20,
             pady=8,
@@ -137,9 +150,9 @@ class ClientesFrame:
             btn_frame,
             text="🗑️ Excluir Cliente",
             command=self._excluir_cliente,
-            font=("Arial", 11, "bold"),
-            bg="#e74c3c",
-            fg="white",
+            font=("Segoe UI", 11, "bold"),
+            bg=self.colors["danger"],
+            fg=self.colors["white"],
             cursor="hand2",
             padx=20,
             pady=8
@@ -147,7 +160,7 @@ class ClientesFrame:
         self.btn_excluir.pack(side=tk.LEFT, padx=5)
         
         # Frame para tabela
-        table_frame = tk.Frame(self.frame, bg="white")
+        table_frame = tk.Frame(self.frame, bg=self.colors["white"])
         table_frame.pack(pady=10, padx=20, fill=tk.BOTH, expand=True)
         
         # Scrollbar
@@ -236,10 +249,41 @@ class ClientesFrame:
                 self.btn_adicionar.config(state=tk.DISABLED)
     
     def _validar_cpf(self, cpf):
-        """Validação básica de CPF (formato)"""
+        """Validação completa de CPF (formato e dígitos verificadores)"""
         # Remove caracteres não numéricos
         cpf_numeros = ''.join(filter(str.isdigit, cpf))
-        return len(cpf_numeros) == 11
+        
+        # Verifica se tem 11 dígitos
+        if len(cpf_numeros) != 11:
+            return False
+        
+        # Verifica se todos os dígitos são iguais (CPF inválido)
+        if cpf_numeros == cpf_numeros[0] * 11:
+            return False
+        
+        # Validação do primeiro dígito verificador
+        soma = 0
+        for i in range(9):
+            soma += int(cpf_numeros[i]) * (10 - i)
+        
+        resto = soma % 11
+        digito1 = 0 if resto < 2 else 11 - resto
+        
+        if int(cpf_numeros[9]) != digito1:
+            return False
+        
+        # Validação do segundo dígito verificador
+        soma = 0
+        for i in range(10):
+            soma += int(cpf_numeros[i]) * (11 - i)
+        
+        resto = soma % 11
+        digito2 = 0 if resto < 2 else 11 - resto
+        
+        if int(cpf_numeros[10]) != digito2:
+            return False
+        
+        return True
     
     def _validar_data(self, data_str):
         """Valida formato de data DD/MM/AAAA"""
@@ -262,7 +306,7 @@ class ClientesFrame:
             return
         
         if not cpf or not self._validar_cpf(cpf):
-            messagebox.showerror("Erro", "CPF inválido! Use o formato XXX.XXX.XXX-XX")
+            messagebox.showerror("Erro", "CPF inválido! Verifique se o CPF está correto.")
             return
         
         if not data_nasc or data_nasc == "DD/MM/AAAA" or not self._validar_data(data_nasc):
@@ -300,7 +344,7 @@ class ClientesFrame:
             return
         
         if not cpf or not self._validar_cpf(cpf):
-            messagebox.showerror("Erro", "CPF inválido!")
+            messagebox.showerror("Erro", "CPF inválido! Verifique se o CPF está correto.")
             return
         
         if not data_nasc or not self._validar_data(data_nasc):

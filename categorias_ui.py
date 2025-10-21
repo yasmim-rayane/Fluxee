@@ -9,10 +9,11 @@ from tkinter import ttk, messagebox
 class CategoriasFrame:
     """Frame para gerenciar categorias"""
     
-    def __init__(self, parent, data_manager):
+    def __init__(self, parent, data_manager, colors):
         self.parent = parent
         self.data_manager = data_manager
-        self.frame = tk.Frame(parent, bg="white")
+        self.colors = colors
+        self.frame = tk.Frame(parent, bg=colors['white'])
         self.frame.pack(fill=tk.BOTH, expand=True)
         
         self._criar_interface()
@@ -23,42 +24,45 @@ class CategoriasFrame:
         # Título
         title = tk.Label(
             self.frame,
-            text="Gerenciamento de Categorias",
-            font=("Arial", 18, "bold"),
-            bg="white",
-            fg="#2c3e50"
+            text="📂 Categorias",
+            font=("Segoe UI", 24, "bold"),
+            bg=self.colors['white'],
+            fg=self.colors['text_dark']
         )
-        title.pack(pady=20)
+        title.pack(pady=(0, 25), anchor="w", padx=20)
         
         # Frame para formulário
-        form_frame = tk.Frame(self.frame, bg="white")
+        form_frame = tk.Frame(self.frame, bg=self.colors['white'])
         form_frame.pack(pady=10, padx=20, fill=tk.X)
         
         # Campo Nome
         tk.Label(
             form_frame,
             text="Nome da Categoria:",
-            font=("Arial", 11),
-            bg="white"
+            font=("Segoe UI", 11),
+            bg=self.colors['white'],
+            fg=self.colors['text_dark']
         ).grid(row=0, column=0, sticky="w", pady=5)
         
-        self.entry_nome = tk.Entry(form_frame, font=("Arial", 11), width=40)
+        self.entry_nome = tk.Entry(form_frame, font=("Segoe UI", 11), width=40, bd=1, relief=tk.SOLID)
         self.entry_nome.grid(row=0, column=1, pady=5, padx=10)
         
         # Botões de ação
-        btn_frame = tk.Frame(form_frame, bg="white")
+        btn_frame = tk.Frame(form_frame, bg=self.colors['white'])
         btn_frame.grid(row=0, column=2, padx=10)
         
         self.btn_adicionar = tk.Button(
             btn_frame,
             text="➕ Adicionar",
             command=self._adicionar_categoria,
-            font=("Arial", 10, "bold"),
-            bg="#27ae60",
-            fg="white",
+            font=("Segoe UI", 10, "bold"),
+            bg=self.colors['success'],
+            fg=self.colors['white'],
             cursor="hand2",
-            padx=15,
-            pady=5
+            padx=20,
+            pady=8,
+            bd=0,
+            relief=tk.FLAT
         )
         self.btn_adicionar.pack(side=tk.LEFT, padx=5)
         
@@ -66,12 +70,14 @@ class CategoriasFrame:
             btn_frame,
             text="✏️ Editar",
             command=self._editar_categoria,
-            font=("Arial", 10, "bold"),
-            bg="#f39c12",
-            fg="white",
+            font=("Segoe UI", 10, "bold"),
+            bg=self.colors['warning'],
+            fg=self.colors['white'],
             cursor="hand2",
-            padx=15,
-            pady=5,
+            padx=20,
+            pady=8,
+            bd=0,
+            relief=tk.FLAT,
             state=tk.DISABLED
         )
         self.btn_editar.pack(side=tk.LEFT, padx=5)
@@ -80,18 +86,20 @@ class CategoriasFrame:
             btn_frame,
             text="❌ Cancelar",
             command=self._cancelar,
-            font=("Arial", 10, "bold"),
-            bg="#95a5a6",
-            fg="white",
+            font=("Segoe UI", 10, "bold"),
+            bg="#6B7280",
+            fg=self.colors['white'],
             cursor="hand2",
-            padx=15,
-            pady=5,
+            padx=20,
+            pady=8,
+            bd=0,
+            relief=tk.FLAT,
             state=tk.DISABLED
         )
         self.btn_cancelar.pack(side=tk.LEFT, padx=5)
         
         # Frame para tabela
-        table_frame = tk.Frame(self.frame, bg="white")
+        table_frame = tk.Frame(self.frame, bg=self.colors['white'])
         table_frame.pack(pady=10, padx=20, fill=tk.BOTH, expand=True)
         
         # Scrollbar
@@ -124,12 +132,14 @@ class CategoriasFrame:
             self.frame,
             text="🗑️ Excluir Categoria",
             command=self._excluir_categoria,
-            font=("Arial", 11, "bold"),
-            bg="#e74c3c",
-            fg="white",
+            font=("Segoe UI", 11, "bold"),
+            bg=self.colors['danger'],
+            fg=self.colors['white'],
             cursor="hand2",
-            padx=20,
-            pady=10
+            padx=25,
+            pady=10,
+            bd=0,
+            relief=tk.FLAT
         )
         btn_excluir.pack(pady=20)
         

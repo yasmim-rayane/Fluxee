@@ -9,10 +9,11 @@ from tkinter import ttk, messagebox
 class EntradaEstoqueFrame:
     """Frame para gerenciar entrada de estoque"""
     
-    def __init__(self, parent, data_manager):
+    def __init__(self, parent, data_manager, colors):
         self.parent = parent
         self.data_manager = data_manager
-        self.frame = tk.Frame(parent, bg="white")
+        self.colors = colors
+        self.frame = tk.Frame(parent, bg=self.colors["white"])
         self.frame.pack(fill=tk.BOTH, expand=True)
         
         self._criar_interface()
@@ -23,39 +24,39 @@ class EntradaEstoqueFrame:
         # Título
         title = tk.Label(
             self.frame,
-            text="Entrada de Estoque",
-            font=("Arial", 18, "bold"),
-            bg="white",
-            fg="#2c3e50"
+            text="📥 Entrada de Estoque",
+            font=("Segoe UI", 24, "bold"),
+            bg=self.colors["white"],
+            fg=self.colors["text_dark"]
         )
-        title.pack(pady=20)
+        title.pack(pady=(0, 25), anchor="w", padx=20)
         
         # Frame superior - Formulário
-        form_container = tk.Frame(self.frame, bg="white", relief=tk.GROOVE, bd=2)
+        form_container = tk.Frame(self.frame, bg=self.colors["white"], relief=tk.GROOVE, bd=2)
         form_container.pack(pady=10, padx=20, fill=tk.X)
         
         tk.Label(
             form_container,
             text="Registrar Nova Entrada",
-            font=("Arial", 13, "bold"),
-            bg="white",
-            fg="#2c3e50"
+            font=("Segoe UI", 13, "bold"),
+            bg=self.colors["white"],
+            fg=self.colors["text_dark"]
         ).pack(pady=10)
         
-        form_frame = tk.Frame(form_container, bg="white")
+        form_frame = tk.Frame(form_container, bg=self.colors["white"])
         form_frame.pack(pady=10, padx=20)
         
         # Produto
         tk.Label(
             form_frame,
             text="Produto:",
-            font=("Arial", 11),
-            bg="white"
+            font=("Segoe UI", 11),
+            bg=self.colors["white"]
         ).grid(row=0, column=0, sticky="w", pady=10, padx=5)
         
         self.combo_produto = ttk.Combobox(
             form_frame,
-            font=("Arial", 11),
+            font=("Segoe UI", 11),
             width=40,
             state="readonly"
         )
@@ -67,16 +68,16 @@ class EntradaEstoqueFrame:
         tk.Label(
             form_frame,
             text="Estoque Atual:",
-            font=("Arial", 11),
-            bg="white"
+            font=("Segoe UI", 11),
+            bg=self.colors["white"]
         ).grid(row=0, column=2, sticky="w", pady=10, padx=10)
         
         self.lbl_estoque_atual = tk.Label(
             form_frame,
             text="0",
-            font=("Arial", 11, "bold"),
-            bg="white",
-            fg="#e74c3c"
+            font=("Segoe UI", 11, "bold"),
+            bg=self.colors["white"],
+            fg=self.colors["danger"]
         )
         self.lbl_estoque_atual.grid(row=0, column=3, pady=10, padx=5)
         
@@ -84,27 +85,27 @@ class EntradaEstoqueFrame:
         tk.Label(
             form_frame,
             text="Quantidade a Adicionar:",
-            font=("Arial", 11),
-            bg="white"
+            font=("Segoe UI", 11),
+            bg=self.colors["white"]
         ).grid(row=1, column=0, sticky="w", pady=10, padx=5)
         
-        self.entry_quantidade = tk.Entry(form_frame, font=("Arial", 11), width=20)
+        self.entry_quantidade = tk.Entry(form_frame, font=("Segoe UI", 11), width=20)
         self.entry_quantidade.grid(row=1, column=1, pady=10, padx=10, sticky="w")
         
         # Novo estoque (calculado)
         tk.Label(
             form_frame,
             text="Novo Estoque:",
-            font=("Arial", 11),
-            bg="white"
+            font=("Segoe UI", 11),
+            bg=self.colors["white"]
         ).grid(row=1, column=2, sticky="w", pady=10, padx=10)
         
         self.lbl_novo_estoque = tk.Label(
             form_frame,
             text="0",
-            font=("Arial", 11, "bold"),
-            bg="white",
-            fg="#27ae60"
+            font=("Segoe UI", 11, "bold"),
+            bg=self.colors["white"],
+            fg=self.colors["success"]
         )
         self.lbl_novo_estoque.grid(row=1, column=3, pady=10, padx=5)
         
@@ -112,16 +113,16 @@ class EntradaEstoqueFrame:
         self.entry_quantidade.bind("<KeyRelease>", self._calcular_novo_estoque)
         
         # Botões
-        btn_frame = tk.Frame(form_container, bg="white")
+        btn_frame = tk.Frame(form_container, bg=self.colors["white"])
         btn_frame.pack(pady=15)
         
         btn_registrar = tk.Button(
             btn_frame,
             text="✅ Registrar Entrada",
             command=self._registrar_entrada,
-            font=("Arial", 11, "bold"),
-            bg="#27ae60",
-            fg="white",
+            font=("Segoe UI", 11, "bold"),
+            bg=self.colors["success"],
+            fg=self.colors["white"],
             cursor="hand2",
             padx=30,
             pady=10
@@ -132,9 +133,9 @@ class EntradaEstoqueFrame:
             btn_frame,
             text="🔄 Limpar",
             command=self._limpar_formulario,
-            font=("Arial", 11, "bold"),
-            bg="#95a5a6",
-            fg="white",
+            font=("Segoe UI", 11, "bold"),
+            bg="#6B7280",
+            fg=self.colors["white"],
             cursor="hand2",
             padx=30,
             pady=10
@@ -142,19 +143,19 @@ class EntradaEstoqueFrame:
         btn_limpar.pack(side=tk.LEFT, padx=5)
         
         # Frame inferior - Histórico
-        history_frame = tk.Frame(self.frame, bg="white")
+        history_frame = tk.Frame(self.frame, bg=self.colors["white"])
         history_frame.pack(pady=10, padx=20, fill=tk.BOTH, expand=True)
         
         tk.Label(
             history_frame,
             text="Histórico de Entradas",
-            font=("Arial", 14, "bold"),
-            bg="white",
-            fg="#2c3e50"
+            font=("Segoe UI", 14, "bold"),
+            bg=self.colors["white"],
+            fg=self.colors["text_dark"]
         ).pack(pady=10)
         
         # Tabela
-        table_frame = tk.Frame(history_frame, bg="white")
+        table_frame = tk.Frame(history_frame, bg=self.colors["white"])
         table_frame.pack(pady=5, fill=tk.BOTH, expand=True)
         
         scrollbar = ttk.Scrollbar(table_frame)

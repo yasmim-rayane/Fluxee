@@ -9,10 +9,11 @@ from tkinter import ttk, messagebox
 class VendasFrame:
     """Frame para gerenciar vendas"""
     
-    def __init__(self, parent, data_manager):
+    def __init__(self, parent, data_manager, colors):
         self.parent = parent
         self.data_manager = data_manager
-        self.frame = tk.Frame(parent, bg="white")
+        self.colors = colors
+        self.frame = tk.Frame(parent, bg=self.colors["white"])
         self.frame.pack(fill=tk.BOTH, expand=True)
         
         # Lista de produtos adicionados à venda
@@ -26,44 +27,44 @@ class VendasFrame:
         # Título
         title = tk.Label(
             self.frame,
-            text="Gerenciamento de Vendas",
-            font=("Arial", 18, "bold"),
-            bg="white",
-            fg="#2c3e50"
+            text="💰 Vendas",
+            font=("Segoe UI", 24, "bold"),
+            bg=self.colors["white"],
+            fg=self.colors["text_dark"]
         )
-        title.pack(pady=20)
+        title.pack(pady=(0, 25), anchor="w", padx=20)
         
         # Frame superior com formulário e carrinho
-        top_frame = tk.Frame(self.frame, bg="white")
+        top_frame = tk.Frame(self.frame, bg=self.colors["white"])
         top_frame.pack(pady=10, padx=20, fill=tk.BOTH, expand=True)
         
         # Frame esquerdo - Formulário
-        left_frame = tk.Frame(top_frame, bg="white", relief=tk.GROOVE, bd=2)
+        left_frame = tk.Frame(top_frame, bg=self.colors["white"], relief=tk.GROOVE, bd=2)
         left_frame.pack(side=tk.LEFT, fill=tk.BOTH, expand=True, padx=(0, 10))
         
         # Título do formulário
         tk.Label(
             left_frame,
             text="Nova Venda",
-            font=("Arial", 14, "bold"),
-            bg="white",
-            fg="#2c3e50"
+            font=("Segoe UI", 14, "bold"),
+            bg=self.colors["white"],
+            fg=self.colors["text_dark"]
         ).pack(pady=10)
         
-        form_frame = tk.Frame(left_frame, bg="white")
+        form_frame = tk.Frame(left_frame, bg=self.colors["white"])
         form_frame.pack(pady=10, padx=15, fill=tk.X)
         
         # Cliente
         tk.Label(
             form_frame,
             text="Cliente:",
-            font=("Arial", 11),
-            bg="white"
+            font=("Segoe UI", 11),
+            bg=self.colors["white"]
         ).grid(row=0, column=0, sticky="w", pady=5)
         
         self.combo_cliente = ttk.Combobox(
             form_frame,
-            font=("Arial", 10),
+            font=("Segoe UI", 10),
             width=35,
             state="readonly"
         )
@@ -74,13 +75,13 @@ class VendasFrame:
         tk.Label(
             form_frame,
             text="Forma Pagamento:",
-            font=("Arial", 11),
-            bg="white"
+            font=("Segoe UI", 11),
+            bg=self.colors["white"]
         ).grid(row=1, column=0, sticky="w", pady=5)
         
         self.combo_pagamento = ttk.Combobox(
             form_frame,
-            font=("Arial", 10),
+            font=("Segoe UI", 10),
             width=35,
             state="readonly",
             values=["Dinheiro", "Cartão Débito", "Cartão Crédito", "PIX", "Boleto"]
@@ -96,20 +97,20 @@ class VendasFrame:
         tk.Label(
             form_frame,
             text="Adicionar Produto:",
-            font=("Arial", 11, "bold"),
-            bg="white"
+            font=("Segoe UI", 11, "bold"),
+            bg=self.colors["white"]
         ).grid(row=3, column=0, columnspan=3, sticky="w", pady=(10, 5))
         
         tk.Label(
             form_frame,
             text="Produto:",
-            font=("Arial", 10),
-            bg="white"
+            font=("Segoe UI", 10),
+            bg=self.colors["white"]
         ).grid(row=4, column=0, sticky="w", pady=5)
         
         self.combo_produto = ttk.Combobox(
             form_frame,
-            font=("Arial", 10),
+            font=("Segoe UI", 10),
             width=25,
             state="readonly"
         )
@@ -120,26 +121,26 @@ class VendasFrame:
         tk.Label(
             form_frame,
             text="Qtd:",
-            font=("Arial", 10),
-            bg="white"
+            font=("Segoe UI", 10),
+            bg=self.colors["white"]
         ).grid(row=5, column=0, sticky="w", pady=5)
         
-        self.entry_quantidade = tk.Entry(form_frame, font=("Arial", 10), width=10)
+        self.entry_quantidade = tk.Entry(form_frame, font=("Segoe UI", 10), width=10)
         self.entry_quantidade.grid(row=5, column=1, pady=5, padx=5, sticky="w")
         
         tk.Label(
             form_frame,
             text="Estoque:",
-            font=("Arial", 10),
-            bg="white"
+            font=("Segoe UI", 10),
+            bg=self.colors["white"]
         ).grid(row=5, column=2, sticky="w", pady=5)
         
         self.lbl_estoque = tk.Label(
             form_frame,
             text="0",
-            font=("Arial", 10, "bold"),
-            bg="white",
-            fg="#e74c3c"
+            font=("Segoe UI", 10, "bold"),
+            bg=self.colors["white"],
+            fg=self.colors["danger"]
         )
         self.lbl_estoque.grid(row=5, column=2, pady=5, sticky="e")
         
@@ -147,29 +148,29 @@ class VendasFrame:
             form_frame,
             text="➕ Adicionar ao Carrinho",
             command=self._adicionar_produto_carrinho,
-            font=("Arial", 10, "bold"),
-            bg="#3498db",
-            fg="white",
+            font=("Segoe UI", 10, "bold"),
+            bg=self.colors["info"],
+            fg=self.colors["white"],
             cursor="hand2",
             pady=5
         )
         btn_add_produto.grid(row=6, column=0, columnspan=3, pady=10, sticky="ew")
         
         # Frame direito - Carrinho
-        right_frame = tk.Frame(top_frame, bg="white", relief=tk.GROOVE, bd=2)
+        right_frame = tk.Frame(top_frame, bg=self.colors["white"], relief=tk.GROOVE, bd=2)
         right_frame.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True)
         
         # Título do carrinho
         tk.Label(
             right_frame,
             text="Carrinho de Compras",
-            font=("Arial", 14, "bold"),
-            bg="white",
-            fg="#2c3e50"
+            font=("Segoe UI", 14, "bold"),
+            bg=self.colors["white"],
+            fg=self.colors["text_dark"]
         ).pack(pady=10)
         
         # Tabela do carrinho
-        carrinho_table_frame = tk.Frame(right_frame, bg="white")
+        carrinho_table_frame = tk.Frame(right_frame, bg=self.colors["white"])
         carrinho_table_frame.pack(pady=5, padx=10, fill=tk.BOTH, expand=True)
         
         scrollbar = ttk.Scrollbar(carrinho_table_frame)
@@ -200,46 +201,46 @@ class VendasFrame:
             right_frame,
             text="➖ Remover Selecionado",
             command=self._remover_produto_carrinho,
-            font=("Arial", 9),
-            bg="#e74c3c",
-            fg="white",
+            font=("Segoe UI", 9),
+            bg=self.colors["danger"],
+            fg=self.colors["white"],
             cursor="hand2",
             pady=3
         )
         btn_remover.pack(pady=5)
         
         # Total
-        total_frame = tk.Frame(right_frame, bg="white")
+        total_frame = tk.Frame(right_frame, bg=self.colors["white"])
         total_frame.pack(pady=10, padx=10, fill=tk.X)
         
         tk.Label(
             total_frame,
             text="TOTAL:",
-            font=("Arial", 14, "bold"),
-            bg="white",
-            fg="#2c3e50"
+            font=("Segoe UI", 14, "bold"),
+            bg=self.colors["white"],
+            fg=self.colors["text_dark"]
         ).pack(side=tk.LEFT)
         
         self.lbl_total = tk.Label(
             total_frame,
             text="R$ 0,00",
-            font=("Arial", 16, "bold"),
-            bg="white",
-            fg="#27ae60"
+            font=("Segoe UI", 16, "bold"),
+            bg=self.colors["white"],
+            fg=self.colors["success"]
         )
         self.lbl_total.pack(side=tk.RIGHT)
         
         # Botões principais
-        btn_frame = tk.Frame(right_frame, bg="white")
+        btn_frame = tk.Frame(right_frame, bg=self.colors["white"])
         btn_frame.pack(pady=10)
         
         self.btn_finalizar = tk.Button(
             btn_frame,
             text="✅ Finalizar Venda",
             command=self._finalizar_venda,
-            font=("Arial", 11, "bold"),
-            bg="#27ae60",
-            fg="white",
+            font=("Segoe UI", 11, "bold"),
+            bg=self.colors["success"],
+            fg=self.colors["white"],
             cursor="hand2",
             padx=20,
             pady=8
@@ -250,9 +251,9 @@ class VendasFrame:
             btn_frame,
             text="🗑️ Limpar Carrinho",
             command=self._limpar_carrinho,
-            font=("Arial", 11, "bold"),
-            bg="#95a5a6",
-            fg="white",
+            font=("Segoe UI", 11, "bold"),
+            bg="#6B7280",
+            fg=self.colors["white"],
             cursor="hand2",
             padx=20,
             pady=8
@@ -260,19 +261,19 @@ class VendasFrame:
         btn_limpar.pack(side=tk.LEFT, padx=5)
         
         # Frame inferior - Lista de vendas
-        bottom_frame = tk.Frame(self.frame, bg="white")
+        bottom_frame = tk.Frame(self.frame, bg=self.colors["white"])
         bottom_frame.pack(pady=10, padx=20, fill=tk.BOTH, expand=True)
         
         tk.Label(
             bottom_frame,
             text="Histórico de Vendas",
-            font=("Arial", 14, "bold"),
-            bg="white",
-            fg="#2c3e50"
+            font=("Segoe UI", 14, "bold"),
+            bg=self.colors["white"],
+            fg=self.colors["text_dark"]
         ).pack(pady=10)
         
         # Tabela de vendas
-        vendas_table_frame = tk.Frame(bottom_frame, bg="white")
+        vendas_table_frame = tk.Frame(bottom_frame, bg=self.colors["white"])
         vendas_table_frame.pack(pady=5, fill=tk.BOTH, expand=True)
         
         scrollbar2 = ttk.Scrollbar(vendas_table_frame)
@@ -305,9 +306,9 @@ class VendasFrame:
             bottom_frame,
             text="🗑️ Excluir Venda Selecionada",
             command=self._excluir_venda,
-            font=("Arial", 10, "bold"),
-            bg="#e74c3c",
-            fg="white",
+            font=("Segoe UI", 10, "bold"),
+            bg=self.colors["danger"],
+            fg=self.colors["white"],
             cursor="hand2",
             padx=15,
             pady=5

@@ -9,10 +9,11 @@ from tkinter import ttk, messagebox
 class ProdutosFrame:
     """Frame para gerenciar produtos"""
     
-    def __init__(self, parent, data_manager):
+    def __init__(self, parent, data_manager, colors):
         self.parent = parent
         self.data_manager = data_manager
-        self.frame = tk.Frame(parent, bg="white")
+        self.colors = colors
+        self.frame = tk.Frame(parent, bg=self.colors["white"])
         self.frame.pack(fill=tk.BOTH, expand=True)
         
         self._criar_interface()
@@ -23,39 +24,39 @@ class ProdutosFrame:
         # Título
         title = tk.Label(
             self.frame,
-            text="Gerenciamento de Produtos",
-            font=("Arial", 18, "bold"),
-            bg="white",
-            fg="#2c3e50"
+            text="📦 Produtos",
+            font=("Segoe UI", 24, "bold"),
+            bg=self.colors["white"],
+            fg=self.colors["text_dark"]
         )
-        title.pack(pady=20)
+        title.pack(pady=(0, 25), anchor="w", padx=20)
         
         # Frame para formulário
-        form_frame = tk.Frame(self.frame, bg="white")
+        form_frame = tk.Frame(self.frame, bg=self.colors["white"])
         form_frame.pack(pady=10, padx=20, fill=tk.X)
         
         # Nome do Produto
         tk.Label(
             form_frame,
             text="Nome do Produto:",
-            font=("Arial", 11),
-            bg="white"
+            font=("Segoe UI", 11),
+            bg=self.colors["white"]
         ).grid(row=0, column=0, sticky="w", pady=5, padx=5)
         
-        self.entry_nome = tk.Entry(form_frame, font=("Arial", 11), width=30)
+        self.entry_nome = tk.Entry(form_frame, font=("Segoe UI", 11), width=30)
         self.entry_nome.grid(row=0, column=1, pady=5, padx=5)
         
         # Categoria
         tk.Label(
             form_frame,
             text="Categoria:*",
-            font=("Arial", 11),
-            bg="white"
+            font=("Segoe UI", 11),
+            bg=self.colors["white"]
         ).grid(row=0, column=2, sticky="w", pady=5, padx=5)
         
         self.combo_categoria = ttk.Combobox(
             form_frame,
-            font=("Arial", 11),
+            font=("Segoe UI", 11),
             width=20,
             state="readonly"
         )
@@ -66,35 +67,35 @@ class ProdutosFrame:
         tk.Label(
             form_frame,
             text="Valor Unitário (R$):",
-            font=("Arial", 11),
-            bg="white"
+            font=("Segoe UI", 11),
+            bg=self.colors["white"]
         ).grid(row=1, column=0, sticky="w", pady=5, padx=5)
         
-        self.entry_valor = tk.Entry(form_frame, font=("Arial", 11), width=30)
+        self.entry_valor = tk.Entry(form_frame, font=("Segoe UI", 11), width=30)
         self.entry_valor.grid(row=1, column=1, pady=5, padx=5)
         
         # Quantidade Inicial
         tk.Label(
             form_frame,
             text="Quantidade Inicial:",
-            font=("Arial", 11),
-            bg="white"
+            font=("Segoe UI", 11),
+            bg=self.colors["white"]
         ).grid(row=1, column=2, sticky="w", pady=5, padx=5)
         
-        self.entry_quantidade = tk.Entry(form_frame, font=("Arial", 11), width=20)
+        self.entry_quantidade = tk.Entry(form_frame, font=("Segoe UI", 11), width=20)
         self.entry_quantidade.grid(row=1, column=3, pady=5, padx=5)
         
         # Botões de ação
-        btn_frame = tk.Frame(self.frame, bg="white")
+        btn_frame = tk.Frame(self.frame, bg=self.colors["white"])
         btn_frame.pack(pady=15)
         
         self.btn_adicionar = tk.Button(
             btn_frame,
             text="➕ Adicionar Produto",
             command=self._adicionar_produto,
-            font=("Arial", 11, "bold"),
-            bg="#27ae60",
-            fg="white",
+            font=("Segoe UI", 11, "bold"),
+            bg=self.colors["success"],
+            fg=self.colors["white"],
             cursor="hand2",
             padx=20,
             pady=8
@@ -105,9 +106,9 @@ class ProdutosFrame:
             btn_frame,
             text="✏️ Salvar Edição",
             command=self._editar_produto,
-            font=("Arial", 11, "bold"),
-            bg="#f39c12",
-            fg="white",
+            font=("Segoe UI", 11, "bold"),
+            bg=self.colors["warning"],
+            fg=self.colors["white"],
             cursor="hand2",
             padx=20,
             pady=8,
@@ -119,9 +120,9 @@ class ProdutosFrame:
             btn_frame,
             text="❌ Cancelar",
             command=self._cancelar,
-            font=("Arial", 11, "bold"),
-            bg="#95a5a6",
-            fg="white",
+            font=("Segoe UI", 11, "bold"),
+            bg="#6B7280",
+            fg=self.colors["white"],
             cursor="hand2",
             padx=20,
             pady=8,
@@ -133,9 +134,9 @@ class ProdutosFrame:
             btn_frame,
             text="🗑️ Excluir Produto",
             command=self._excluir_produto,
-            font=("Arial", 11, "bold"),
-            bg="#e74c3c",
-            fg="white",
+            font=("Segoe UI", 11, "bold"),
+            bg=self.colors["danger"],
+            fg=self.colors["white"],
             cursor="hand2",
             padx=20,
             pady=8
@@ -143,7 +144,7 @@ class ProdutosFrame:
         self.btn_excluir.pack(side=tk.LEFT, padx=5)
         
         # Frame para tabela
-        table_frame = tk.Frame(self.frame, bg="white")
+        table_frame = tk.Frame(self.frame, bg=self.colors["white"])
         table_frame.pack(pady=10, padx=20, fill=tk.BOTH, expand=True)
         
         # Scrollbar
