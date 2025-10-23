@@ -1,8 +1,8 @@
-# 🎯 Sistema Fluxee - Gestão de Estoque e Vendas
+# Sistema Fluxee - Gestão de Estoque e Vendas
 
 <div align="center">
 
-![Version](https://img.shields.io/badge/version-2.0-blue)
+![Version](https://img.shields.io/badge/version-1.0-blue)
 ![Python](https://img.shields.io/badge/python-3.7+-green)
 ![License](https://img.shields.io/badge/license-MIT-orange)
 ![Status](https://img.shields.io/badge/status-production-brightgreen)
@@ -15,22 +15,22 @@
 
 ---
 
-## 📋 Sobre o Projeto
+## Sobre o Projeto
 
 O **Sistema Fluxee** é uma aplicação desktop completa para gestão de estoque e vendas, desenvolvida em Python com interface gráfica moderna baseada na identidade visual Fluxee.
 
-### ✨ Destaques v2.0
+### Destaques
 
-- 🎨 **Interface Modernizada** com paleta de cores Fluxee (azul ciano)
-- 🖼️ **Logo Integrada** no cabeçalho
-- ✅ **Validação de CPF** com algoritmo oficial brasileiro
-- 💾 **Banco SQLite** com relacionamentos e constraints
-- 📊 **Dashboard** com estatísticas em tempo real
-- 🔄 **Controle de Estoque** automático nas vendas
+- **Interface Modernizada** com paleta de cores Fluxee (azul ciano)
+- **Logo Integrada** no cabeçalho
+- **Validação de CPF** com algoritmo oficial brasileiro
+- **Banco SQLite** com relacionamentos e constraints
+- **Dashboard** com estatísticas em tempo real
+- **Controle de Estoque** automático nas vendas
 
 ---
 
-## 🚀 Instalação
+## Instalação
 
 ### Pré-requisitos
 
@@ -55,46 +55,46 @@ python main.py
 
 ---
 
-## 💎 Funcionalidades
+## Funcionalidades
 
-### 🏠 Dashboard
+### Dashboard
 - Visão geral do sistema
 - Estatísticas de produtos, categorias, clientes e vendas
 - Card especial com valor total de vendas
 - Interface com cards coloridos e modernos
 
-### 📂 Categorias
+### Categorias
 - Criar, editar e excluir categorias
 - Validação de nomes únicos
 - Exclusão em cascata (remove produtos associados)
 
-### 📦 Produtos
+### Produtos
 - Gerenciamento completo de produtos
 - Vinculação obrigatória a categorias
 - Controle de estoque integrado
 - Preço e quantidade
 
-### 👥 Clientes
+### Clientes
 - Cadastro com validação de CPF (algoritmo oficial)
 - Data de nascimento e gênero
 - CPF único no sistema
 - Validação de formato DD/MM/AAAA
 
-### 💰 Vendas
+### Vendas
 - Sistema completo de PDV
 - Adicionar múltiplos produtos
 - Cálculo automático de totais
 - Formas de pagamento variadas
 - Baixa automática no estoque
 
-### 📥 Entrada de Estoque
+### Entrada de Estoque
 - Registro de entradas
 - Incremento automático no estoque
 - Histórico com data/hora
 
 ---
 
-## 🎨 Visual Modernizado
+## Visual Modernizado
 
 ### Paleta de Cores Fluxee
 
@@ -120,14 +120,14 @@ Perigo:      #EF4444  /* Vermelho */
 │ 📂 Cat  │  • Dashboard com cards           │
 │ 📦 Prod │  • Formulários modernos          │
 │ 📥 Est  │  • Tabelas organizadas           │
-│ 👥 Cli  │  • Botões coloridos             │
+│ 👥 Cli  │  • Botões coloridos              │
 │ 💰 Vend │                                  │
 └─────────┴──────────────────────────────────┘
 ```
 
 ---
 
-## 📚 Documentação
+## Documentação
 
 ### Guias Principais
 
@@ -147,11 +147,11 @@ Perigo:      #EF4444  /* Vermelho */
 
 ---
 
-## 🗂️ Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 claude/
-├── main.py              # ⭐ Aplicação principal
+├── main.py              # Aplicação principal
 ├── README.md            # Este arquivo
 ├── iniciar.bat          # Atalho Windows
 ├── sistema_wa.db        # Banco de dados SQLite
@@ -189,7 +189,7 @@ claude/
 
 ---
 
-## 💾 Banco de Dados
+## Banco de Dados
 
 ### Tabelas
 
@@ -209,24 +209,24 @@ claude/
 
 ---
 
-## ✅ Validações Implementadas
+## Validações Implementadas
 
 ### CPF
-- ✔️ Formato com 11 dígitos
-- ✔️ Rejeita sequências iguais (111.111.111-11)
-- ✔️ Valida primeiro dígito verificador
-- ✔️ Valida segundo dígito verificador
-- ✔️ Aceita com ou sem pontuação
+- Formato com 11 dígitos
+- Rejeita sequências iguais (111.111.111-11)
+- Valida primeiro dígito verificador
+- Valida segundo dígito verificador
+- Aceita com ou sem pontuação
 
 ### Formulários
-- ✔️ Campos obrigatórios
-- ✔️ Formatos de data (DD/MM/AAAA)
-- ✔️ Valores numéricos positivos
-- ✔️ Unicidade (CPF, códigos)
+- Campos obrigatórios
+- Formatos de data (DD/MM/AAAA)
+- Valores numéricos positivos
+- Unicidade (CPF, códigos)
 
 ---
 
-## 🎯 Tecnologias
+## Tecnologias
 
 - **Python 3.11+** - Linguagem principal
 - **Tkinter** - Interface gráfica
@@ -236,7 +236,7 @@ claude/
 
 ---
 
-## 🖼️ Adicionar Logo Real
+## Adicionar Logo Real
 
 Atualmente o sistema usa uma logo placeholder (círculo com "F").
 
@@ -250,7 +250,7 @@ Atualmente o sistema usa uma logo placeholder (círculo com "F").
 
 ---
 
-## 🔒 Segurança
+## Segurança
 
 - Validação de entrada em todos os formulários
 - Constraints do banco (UNIQUE, FK, NOT NULL)
@@ -259,45 +259,45 @@ Atualmente o sistema usa uma logo placeholder (círculo com "F").
 
 ---
 
-## 📊 Status do Projeto
+## Status do Projeto
 
-- ✅ Interface completa e funcional
-- ✅ Banco de dados implementado
-- ✅ Validações ativas
-- ✅ Visual modernizado
-- ✅ Documentação completa
-- ⏳ Aguardando logo real Fluxee
+- Interface completa e funcional
+- Banco de dados implementado
+- Validações ativas
+- Visual modernizado
+- Documentação completa
+- Aguardando logo real Fluxee
 
 ---
 
-## 🤝 Contribuindo
+## Contribuindo
 
 Este é um projeto educacional. Sugestões são bem-vindas!
 
 ---
 
-## 📝 Licença
+## Licença
 
 MIT License - Livre para uso e modificação
 
 ---
 
-## 🎊 Pronto para Usar!
+## Pronto para Usar!
 
 O sistema está **100% funcional** e pronto para produção!
 
 ### Checklist:
 
-- ✅ Instalar dependências: `pip install Pillow`
-- ✅ Executar: `python main.py` ou `iniciar.bat`
-- ⏳ Adicionar logo real (opcional)
-- ✅ Começar a usar!
+- Instalar dependências: `pip install Pillow`
+- Executar: `python main.py` ou `iniciar.bat`
+- Adicionar logo real (opcional)
+- Começar a usar!
 
 ---
 
 <div align="center">
 
-**Sistema Fluxee v2.0**
+**Sistema Fluxee v1.0**
 
 *Desenvolvido com ❤️ usando Python + Tkinter + SQLite*
 
